@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+Author: Horace Vial
+Date: 04/13/2026
+Purpose: Creates a basic page with sections and shows a welcome message.
+-->
+    <meta charset="utf-8" />
+    <title>Personal Portfolio</title>
+</head>
+
+<body>
+    <!-- welcome message -->
+    <h1 id="welcome">Welcome</h1>
+
+    <!-- navigation -->
+    <nav>
+        <a href="#about">About</a> |
+        <a href="#projects">Projects</a> |
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- about section -->
+    <h2 id="about">About</h2>
+    <p>
+        My name is Horace Vial. I am studying Information Technology and working
+        on learning more about programming and web development.
+    </p>
+
+    <!-- projects section -->
+    <h2 id="projects">Projects</h2>
+
+    <a href="#">
+        <img src="https://via.placeholder.com/100" alt="Project 1">
+    </a>
+
+    <a href="#">
+        <img src="https://via.placeholder.com/100" alt="Project 2">
+    </a>
+
+    <a href="#">
+        <img src="https://via.placeholder.com/100" alt="Project 3">
+    </a>
+
+    <!-- contact section -->
+    <h2 id="contact">Contact</h2>
+
+    <form>
+        Name: <input type="text"><br>
+        Email: <input type="email"><br>
+        Subject: <input type="text"><br>
+        Message: <textarea></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+<script>
+    // ask for user name
+    var name = prompt("Enter your name:");
+
+    // update welcome message
+    if (name != null && name != "") {
+        document.getElementById("welcome").innerHTML = "Welcome, " + name;
+    }
+</script>
+
+</body>
+</html>
