@@ -3,8 +3,8 @@
 <head>
     <!--
     Author: Horace Vial
-    Date: 04/20/2026
-    Purpose: Portfolio with conditional logic, loop, and interactivity.
+    Date: 04/29/2026
+    Purpose: Portfolio using JavaScript.
     -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -13,15 +13,14 @@
 </head>
 
 <body>
-    <!-- Dark Mode -->
+
     <label>
         <input type="checkbox" id="darkMode"> Dark Mode
     </label>
+   
 
-    <!-- welcome message -->
     <h1 id="welcome">Welcome</h1>
 
-    <!-- navigation -->
     <nav>
         <a href="#about">About</a> |
         <a href="#featured">Featured</a> |
@@ -29,20 +28,16 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    <!-- about section -->
     <h2 id="about">About</h2>
-    <p>
+    <p id="aboutText">
         My name is Horace Vial. I am studying Information Technology and learning programming.
     </p>
 
-    <!-- skills -->
     <h3>Skills</h3>
     <ul id="skillsList"></ul>
 
-    <!-- featured content -->
     <h2 id="featured">Featured Content</h2>
 
-    <!-- University -->
     <div id="university" class="box">
         <h3>University Resources</h3>
         <a href="https://www.ecpi.edu/programs/software-development-bachelor-degree" target="_blank">
@@ -50,17 +45,16 @@
         </a>
     </div>
 
-    <!-- Personal Projects  -->
     <div id="personalProjects" class="box">
-    <h3>Personal Projects</h3>
+        <h3>Personal Projects</h3>
+        <a href="https://github.com/c-vial" target="_blank">
+            <img src="images/github.jpg" alt="My GitHub">
+        </a>
+    </div>
 
-    <a href="https://github.com/c-vial" target="_blank">
-        <img src="images/github.jpg" alt="My GitHub">
-    </a>
-</div>
-
-    <!-- projects section  -->
     <h2 id="projects">Projects</h2>
+
+    <p id="projectMessage"></p>
 
     <a href="https://github.com/c-vial/DigitalRolodex" target="_blank">
         <img src="images/rolodex.jpg" alt="Digital Rolodex">
@@ -74,16 +68,30 @@
         <img src="images/shoppingcart.jpg" alt="PC Store Project">
     </a>
 
-    <!-- contact -->
     <h2 id="contact">Contact</h2>
 
     <form id="contactForm">
-        Name: <input type="text" id="userName"><br>
-        Email: <input type="email"><br>
-        Subject: <input type="text"><br>
-        Message: <textarea></textarea><br>
+        <!-- name -->
+        <label>Name:</label>
+        <input type="text" id="userName"><br>
+
+        <!-- email -->
+        <label>Email:</label>
+        <input type="email" id="email"><br>
+
+        <!-- subject -->
+        <label>Subject:</label>
+        <input type="text" id="subject"><br>
+
+        <!-- message -->
+        <label>Message:</label>
+        <textarea id="message"></textarea><br>
+
+        <!-- submit -->
         <input type="submit" value="Submit">
     </form>
+
+    <p id="formMessage"></p>
 
     <script>
         // welcome
@@ -91,8 +99,13 @@
         if (name != null && name != "") {
             document.getElementById("welcome").innerHTML = "Welcome, " + name;
         }
+        
+        // timed notification popup
+        setTimeout(function () {
+            alert("Welcome to my portfolio. Check out my projects and contact section.");
+            }, 2000);
 
-        // skills (loop)
+        // skills
         var skills = ["HTML", "CSS", "JavaScript", "Git", "GitHub"];
         var list = document.getElementById("skillsList");
 
@@ -102,33 +115,47 @@
             list.appendChild(li);
         }
 
-        // if/else
+        // projects visibility
         var projectCount = 3;
 
         if (projectCount < 3) {
             document.getElementById("university").style.display = "block";
-            document.getElementById("personalProjects").style.display = "block";
         } else {
             document.getElementById("university").style.display = "none";
-            document.getElementById("personalProjects").style.display = "block";
         }
+
+
+        // modify existing elements
+        document.querySelector("#about").style.borderBottom = "2px solid gray";
+        document.getElementById("aboutText").style.fontSize = "18px";
 
         // dark mode
         document.getElementById("darkMode").addEventListener("change", function () {
             document.body.classList.toggle("dark");
         });
 
-        // form submit
+        // form submit with validation
         document.getElementById("contactForm").addEventListener("submit", function (event) {
             event.preventDefault();
 
-            var enteredName = document.getElementById("userName").value;
+            var name = document.getElementById("userName").value;
+            var email = document.getElementById("email").value;
+            var subject = document.getElementById("subject").value;
+            var messageText = document.getElementById("message").value;
 
-            if (enteredName != "") {
-                alert("Thank you, " + enteredName + ", your message has been sent!");
-            } else {
-                alert("Thank you, your message has been sent!");
+            var message = document.getElementById("formMessage");
+
+            // check empty fields
+            if (name === "" || email === "" || subject === "" || messageText === "") {
+                message.textContent = "Please fill out all fields.";
+                return;
             }
+
+            message.textContent = "Sending message...";
+
+            setTimeout(function () {
+                message.textContent = "Thank you, " + name + ", your message has been sent!";
+            }, 2000);
         });
     </script>
 
