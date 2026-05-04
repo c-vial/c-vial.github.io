@@ -3,7 +3,7 @@
 <head>
     <!--
     Author: Horace Vial
-    Date: 04/29/2026
+    Date: 05/03/2026
     Purpose: Portfolio using JavaScript.
     -->
     <meta charset="utf-8" />
@@ -13,6 +13,14 @@
 </head>
 
 <body>
+
+    <div id="welcomeModal" class="modal-overlay">
+        <div class="modal-box">
+            <h2>Welcome</h2>
+            <p>This page is a work in progress.</p>
+            <button type="button" id="closeModal">Close</button>
+        </div>
+    </div>
 
     <label>
         <input type="checkbox" id="darkMode"> Dark Mode
@@ -88,22 +96,19 @@
         <textarea id="message"></textarea><br>
 
         <!-- submit -->
-        <input type="submit" value="Submit">
+        <span class="tooltip">
+            <input type="submit" value="Submit">
+            <span class="tooltipText">Click to send your message!</span>
+        </span>
     </form>
 
     <p id="formMessage"></p>
 
     <script>
-        // welcome
-        var name = prompt("Enter your name:");
-        if (name != null && name != "") {
-            document.getElementById("welcome").innerHTML = "Welcome, " + name;
-        }
-        
-        // timed notification popup
-        setTimeout(function () {
-            alert("Welcome to my portfolio. Check out my projects and contact section.");
-            }, 2000);
+        // modal window
+        document.getElementById("closeModal").addEventListener("click", function () {
+            document.getElementById("welcomeModal").style.display = "none";
+        });
 
         // skills
         var skills = ["HTML", "CSS", "JavaScript", "Git", "GitHub"];
@@ -130,8 +135,21 @@
         document.getElementById("aboutText").style.fontSize = "18px";
 
         // dark mode
-        document.getElementById("darkMode").addEventListener("change", function () {
-            document.body.classList.toggle("dark");
+        var darkModeToggle = document.getElementById("darkMode");
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.body.classList.add("dark");
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener("change", function () {
+            if (darkModeToggle.checked) {
+                document.body.classList.add("dark");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                document.body.classList.remove("dark");
+                localStorage.setItem("darkMode", "disabled");
+            }
         });
 
         // form submit with validation
