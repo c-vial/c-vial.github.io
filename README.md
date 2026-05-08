@@ -53,7 +53,7 @@ This portfolio project is a personal website created to showcase programming pro
 - **Incremental Development**: Features were added and improved throughout development.
 
 ## Live Website
-Add your GitHub Pages deployment link here.
+https://c-vial.github.io/
 
 ## GitHub Repository
-Add your GitHub repository link here.
+https://github.com/c-vial/c-vial.github.io/tree/main
