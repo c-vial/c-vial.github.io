@@ -146,3 +146,25 @@ input[type="submit"] {
 .dark a {
     color: lightblue;
 }
+
+/* dynamic project section */
+#projectSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.projectBox {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0;
+    width: 220px;
+}
+
+.projectBox p {
+    min-height: 70px;
+}
+
+.dark .projectBox {
+    border: 1px solid white;
+}
