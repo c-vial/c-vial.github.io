@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <!--
     Author: Horace Vial
-    Date: 05/03/2026
-    Purpose: Portfolio using JavaScript.
+    Date: 05/08/2026
+    Purpose: Portfolio using project objects
     -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,7 +17,7 @@
     <div id="welcomeModal" class="modal-overlay">
         <div class="modal-box">
             <h2>Welcome</h2>
-            <p>This page is a work in progress.</p>
+            <p>More projects coming soon.</p>
             <button type="button" id="closeModal">Close</button>
         </div>
     </div>
@@ -25,7 +25,6 @@
     <label>
         <input type="checkbox" id="darkMode"> Dark Mode
     </label>
-   
 
     <h1 id="welcome">Welcome</h1>
 
@@ -38,7 +37,7 @@
 
     <h2 id="about">About</h2>
     <p id="aboutText">
-        My name is Horace Vial. I am studying Information Technology and learning programming.
+        My name is Horace Vial. I am studying Information Technology with a focus on software development.
     </p>
 
     <h3>Skills</h3>
@@ -54,7 +53,7 @@
     </div>
 
     <div id="personalProjects" class="box">
-        <h3>Personal Projects</h3>
+        <h3>GitHub Profile</h3>
         <a href="https://github.com/c-vial" target="_blank">
             <img src="images/github.jpg" alt="My GitHub">
         </a>
@@ -64,17 +63,7 @@
 
     <p id="projectMessage"></p>
 
-    <a href="https://github.com/c-vial/DigitalRolodex" target="_blank">
-        <img src="images/rolodex.jpg" alt="Digital Rolodex">
-    </a>
-
-    <a href="https://github.com/LawSwan/PHP-Management-System" target="_blank">
-        <img src="images/php.jpg" alt="PHP Management System">
-    </a>
-
-    <a href="https://github.com/c-vial/chases_pc_store" target="_blank">
-        <img src="images/shoppingcart.jpg" alt="PC Store Project">
-    </a>
+    <div id="projectSection"></div>
 
     <h2 id="contact">Contact</h2>
 
@@ -104,78 +93,8 @@
 
     <p id="formMessage"></p>
 
-    <script>
-        // modal window
-        document.getElementById("closeModal").addEventListener("click", function () {
-            document.getElementById("welcomeModal").style.display = "none";
-        });
+    <script src="script.js"></script>
 
-        // skills
-        var skills = ["HTML", "CSS", "JavaScript", "Git", "GitHub"];
-        var list = document.getElementById("skillsList");
-
-        for (var i = 0; i < skills.length; i++) {
-            var li = document.createElement("li");
-            li.innerHTML = skills[i];
-            list.appendChild(li);
-        }
-
-        // projects visibility
-        var projectCount = 3;
-
-        if (projectCount < 3) {
-            document.getElementById("university").style.display = "block";
-        } else {
-            document.getElementById("university").style.display = "none";
-        }
-
-
-        // modify existing elements
-        document.querySelector("#about").style.borderBottom = "2px solid gray";
-        document.getElementById("aboutText").style.fontSize = "18px";
-
-        // dark mode
-        var darkModeToggle = document.getElementById("darkMode");
-
-        if (localStorage.getItem("darkMode") === "enabled") {
-            document.body.classList.add("dark");
-            darkModeToggle.checked = true;
-        }
-
-        darkModeToggle.addEventListener("change", function () {
-            if (darkModeToggle.checked) {
-                document.body.classList.add("dark");
-                localStorage.setItem("darkMode", "enabled");
-            } else {
-                document.body.classList.remove("dark");
-                localStorage.setItem("darkMode", "disabled");
-            }
-        });
-
-        // form submit with validation
-        document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            var name = document.getElementById("userName").value;
-            var email = document.getElementById("email").value;
-            var subject = document.getElementById("subject").value;
-            var messageText = document.getElementById("message").value;
-
-            var message = document.getElementById("formMessage");
-
-            // check empty fields
-            if (name === "" || email === "" || subject === "" || messageText === "") {
-                message.textContent = "Please fill out all fields.";
-                return;
-            }
-
-            message.textContent = "Sending message...";
-
-            setTimeout(function () {
-                message.textContent = "Thank you, " + name + ", your message has been sent!";
-            }, 2000);
-        });
-    </script>
 
 </body>
 </html>
